@@ -10,7 +10,46 @@ namespace ConsoleAppBasics
             //NoneDeciamlnumbers();
             //InputIntVSDouble();
 
-            DateTimeBasics();
+            //DateTimeBasics();
+
+            /*
+            double numberParesed = GetNumberFromUser();
+            Console.WriteLine("Number was: {0}", numberParesed );
+            */
+
+            RandomNumbers();
+        }
+
+        private static void RandomNumbers()
+        {
+            Random randomGenerator = new Random();
+
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine($"Random number {i}: {randomGenerator.Next(1, 101)}" );
+            }
+        }
+
+        static double GetNumberFromUser()
+        {
+            int numberOfTryes = 3;
+            double number = 0;
+            bool didParseNumber = false;
+
+            while (didParseNumber == false && numberOfTryes > 0)
+            {
+                Console.Write("Enter a number: ");
+                didParseNumber = double.TryParse(Console.ReadLine(), out number);
+                
+                numberOfTryes--;
+
+                if ( ! didParseNumber)
+                {
+                    Console.WriteLine("You must enter a number!");
+                }
+            }
+
+            return number;
         }
 
         private static void DateTimeBasics()
@@ -66,6 +105,10 @@ namespace ConsoleAppBasics
             int numberA = (int)standardDecimal;
 
             Console.WriteLine("int from double: " + numberA);
+
+            int convertUsingMath = (int)Math.Round(standardDecimal, 1);
+
+            Console.WriteLine("int from double using Math.Round: " + numberA);
         }
 
 
